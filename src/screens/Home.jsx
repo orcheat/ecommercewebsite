@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Card from "../components/Card";
+import './Home.css'
 // import Carousal from "../components/Carousal";
 
 function Home() {
@@ -14,19 +15,19 @@ function Home() {
             method: "GET",
         })
             .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                setfoodCat(data.data)
+            .then((datas) => {
+                // console.log(data);
+                setfoodCat(datas.data)
             })
     }, [])
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/getfoods", {
+        fetch("http://localhost:5000/api/getitems", {
             method: "GET",
         })
             .then((res) => res.json())
             .then((data) => {
-                // console.log(data);
+                console.log(data);
                 setfoods(data.data)
             })
     }, [])
@@ -45,7 +46,7 @@ function Home() {
                             </div>
                         </div>
                         <div className="carousel-item active" >
-                            <img src="https://source.unsplash.com/random/900x700/?burger" className="d-block w-100  " style={{ filter: "brightness(30%)" }} alt="..." />
+                            <img src="https://previews.123rf.com/images/dusanzidar/dusanzidar1703/dusanzidar170300006/73297139-selection-of-healthy-food-on-white-background.jpg" className="d-block w-100  " style={{ filter: "brightness(80%)" }} alt="..." />
                         </div>
                         <div className="carousel-item">
                             <img src="https://source.unsplash.com/random/900x700/?pastry" className="d-block w-100 " style={{ filter: "brightness(30%)" }} alt="..." />
@@ -70,7 +71,7 @@ function Home() {
                         return (
                             <div className="row mb-3">
                                 <div key={i._id}>
-                                    <div className="fs-3 m-3">{i.CategoryName}</div>
+                                    <div className="fs-3 m-3 cat-name">{i.CategoryName}</div>
                                 </div>
                                 <hr />
                                 {
@@ -79,8 +80,6 @@ function Home() {
                                             return (
                                                 <div key={filterItems._id} className="col-12 col-md-6 col-lg-3">
                                                     <Card foodItem={filterItems}
-                                                        // foodName={filterItems.name}
-                                                        // image={filterItems.img}
                                                         options={filterItems.options[0]}
                                                     ></Card>
                                                 </div>

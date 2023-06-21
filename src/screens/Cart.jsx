@@ -7,40 +7,21 @@ import { useCart, useDispatchCart } from '../components/ContextReducer';
 
 export default function Cart() {
 
-    const [address, setAddress] = useState('');
+    const [address] = useState('');
 
     let data = useCart();
     let dispatch = useDispatchCart();
     if (data.length === 0) {
         return (
             <div>
-                <div className='m-5 w-100 text-center fs-3'>
+                <div className='m-5 w-100 text-center fs-3' style={{color: "black"}}>
                     The Cart is Empty!
                     <hr />
                 </div>
-                <img src="https://kurtrees.files.wordpress.com/2013/04/black-and-white-empty-empty-heart-heart-favim-com-501667.jpg" alt="" />
+                {/* <img src="https://kurtrees.files.wordpress.com/2013/04/black-and-white-empty-empty-heart-heart-favim-com-501667.jpg" alt="" /> */}
             </div>
         )
     }
-
-    //const handleSend = async(e) => {
-        // e.preventDefault();
-        // let userEmail = localStorage.getItem("userEmail");
-        // let userName = localStorage.getItem("userName");
-        // let response2 = await fetch("http://localhost:5000/api/neworder", {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         order_data: data,
-        //         email: userEmail,
-        //         name: userName,
-        //     })
-        // });
-        // const ordersView = await response2.json();
-        // console.log(ordersView);
-    //}
 
     const handleCheckOut = async (e) => {
         e.preventDefault();
@@ -70,7 +51,7 @@ export default function Cart() {
         <div>
             {console.log(data)}
             <div className='all-cart container m-auto mt-5 table-responsive  table-responsive-sm table-responsive-md' >
-                <table className='table table-hover '>
+                <table className='table '>
                     <thead className=' text-success fs-4'>
                         <tr>
                             <th scope='col' >#</th>
@@ -99,11 +80,11 @@ export default function Cart() {
                         ))}
                     </tbody>
                 </table>
-                <div><h1 className='fs-2'>Total Price: {totalPrice}/-</h1></div>
-                <div className='mt-3'>
+                <div><h1 className='fs-2 total-price'>Total Price: {totalPrice}/-</h1></div>
+                {/* <div className='mt-3 total-price'>
                     <label htmlFor='address' className='form-label fs-4'>Enter Address:</label>
                     <input type='text' className='form-control' id='address' placeholder='Enter Address' value={address} onChange={(e) => setAddress(e.target.value)} />
-                </div>
+                </div> */}
                 <div>
                     <button className='btn bg-success mt-5 ' onClick={
                         handleCheckOut

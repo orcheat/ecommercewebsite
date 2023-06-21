@@ -20,6 +20,7 @@ import {
 import { CartProvider } from './components/ContextReducer';
 
 function App() {
+  
   return (
     <CartProvider>
 
@@ -32,7 +33,7 @@ function App() {
             <Route exact path='/createuser' element={<Signup />} />
             <Route exact path='/hoteluser' element={<Hotel />} />
             <Route exact path='/myorder' element={<MyOrder />} />
-            <Route exact path='/neworders' element={<NewOrders/>}/>
+            <Route exact path='/neworders' element={<NewOrders />} />
           </Routes>
         </div>
       </Router>

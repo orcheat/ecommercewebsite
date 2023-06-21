@@ -5,7 +5,9 @@ import { useNavigate } from 'react-router-dom'
 import Modal from '../Modal';
 import Cart from '../screens/Cart';
 import { useCart } from './ContextReducer';
-import MyOrder from '../screens/MyOrder';
+// import MyOrder from '../screens/MyOrder';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Navbar() {
 
@@ -31,9 +33,9 @@ function Navbar() {
 
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-success" style={{ fontFamily: 'Merriweather', fontWeight: 'bold' }}>
+            <nav className="navbar navbar-expand-lg navbar-dark fixed-top" style={{ fontFamily: 'Merriweather', fontWeight: 'bold', backgroundColor: '#D5F9F7', opacity: '0.9', zIndex: 999, transition: 'opacity 0.3s ease-in-out' }}>
                 <div className="container-fluid">
-                    <Link className="navbar-brand fs-1 fst-italic" to="/home">Quick kart</Link>
+                    <Link className="navbar-brand fs-1 fst-italic" style={{ color: 'black' }} to="/home">Quick kart</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -56,19 +58,19 @@ function Navbar() {
                             </div>
                             :
                             <div className='d-flex'>
-                                <div className='btn bg-white text-success mx-1' onClick={handleShowModal}>My Orders</div>
+                                {/* <div className='btn bg-white text-success mx-1' onClick={handleShowModal}>My Orders</div>
                                 {showModal && (
                                     <Modal onClose={handleCloseModal}>
                                         <MyOrder></MyOrder>
                                     </Modal>
-                                )}
+                                )} */}
                                 <div className='btn bg-white text-success mx-1' onClick={() => { setCartView(true) }}>
-                                    My Cart {" "}
+                                    <FontAwesomeIcon icon={faShoppingCart} className="me-2" />Cart {" "}
                                     <Badge pill bg="danger">{data.length}</Badge>
                                 </div>
                                 {cartView ? <Modal onClose={() => setCartView(false)}><Cart></Cart></Modal> : null}
                                 <div>
-                                    <button className='btn bg-white text-danger mx-1' onClick={handleLogout}>Logout</button>
+                                    <button className='btn bg-white text-danger mx-1' onClick={handleLogout}>Logout <FontAwesomeIcon icon={faSignOutAlt} /></button>
                                 </div>
                             </div>
                         }
